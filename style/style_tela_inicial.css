@@ -70,8 +70,8 @@ ul{
     align-items: center;
     align-content:stretch;
     justify-items: center;
-    margin: 0px 0px;
-    padding: 0px;
+    margin: 10px 0px;
+    padding: 10px;
     
 }
 
@@ -86,8 +86,11 @@ li{
     background-color: var(--forty-color);
     border-radius: 20px;
     box-shadow:  0 0 0 1px rgba(250, 159, 3);
+    padding: 0px;
+    
 
 }
+
 
 li i{
     font-size: 35px;
