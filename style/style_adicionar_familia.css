@@ -84,7 +84,7 @@ button {
 .endereco form{
   display: flex;
   flex-direction: column;
-  margin: 0px 0px 50px 10px;
+  margin: 0px 10px 0px 10px;
   height: 20vh;
 
 }
@@ -97,15 +97,18 @@ button {
   justify-content: center;
   align-items: center;
   margin: auto;
+  margin-top: 10px;
   background-color: #d75e01;
   color: white;
-  padding: 10px;
+  font-size: 18px;
+  padding: 5px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 90%;
+  width: 50%;
 
 }
+
 
 .endereco button:hover {
   background-color: #e76d0f;

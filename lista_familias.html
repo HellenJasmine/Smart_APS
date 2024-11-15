@@ -5,43 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style_lista_familias.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <title>Document</title>
+    <title>Lista de Famílias</title>
 </head>
 <body>
-    
     <div class="container">
         <div class="divTable">
             <h1>Famílias</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Representante</th>
-                    <th class="acao">Ver</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="./adicionar_familia.html">nome</a>
-                    </td>
-                    <td>
-                        <a href="./adicionar_familia.html">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><a href="./adicionar_familia.html">nome</a></td>
-                    <td >
-                        <a href="./adicionar_familia.html">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Representante</th>
+                        <th class="acao">Ver</th>
+                    </tr>
+                </thead>
+                <tbody id="familias-lista">
+                    <!-- Linhas de famílias serão adicionadas aqui pelo JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+
+    <script>
+        // Função para carregar as famílias do localStorage e listar no HTML
+        function carregarFamilias() {
+            const familias = JSON.parse(localStorage.getItem('dbfamilias')) ?? [];
+            const tabelaFamilias = document.getElementById('familias-lista');
+
+            // Limpa a tabela antes de adicionar novas linhas
+            tabelaFamilias.innerHTML = '';
+
+            // Adiciona cada família na tabela
+            familias.forEach((familia, index) => {
+                const representante = familia.criancas.length > 0 ? familia.criancas[0].nome : 'Sem representante';
+                
+                const linha = document.createElement('tr');
+                linha.innerHTML = `
+                    <td><a href="./adicionar_familia.html?id=${index}">${representante}</a></td>
+                    <td class="acao">
+                        <a href="./adicionar_familia.html?id=${index}">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                    </td>
+                `;
+
+                tabelaFamilias.appendChild(linha);
+            });
+        }
+
+        // Carrega as famílias ao carregar a página
+        document.addEventListener('DOMContentLoaded', carregarFamilias);
+    </script>
 </body>
 </html>

@@ -13,8 +13,8 @@
         <div class="header">
             <span>Cartão de Vacinas</span>
         </div>
-        <h2>Nome do Paciente</h2>
-        <h3>Categoria</h3>
+        <h2 id="nomeCrianca">Nome do Paciente</h2>
+        
         
         <div class="filter-vacina">
             <h4>Vacina</h4>
@@ -55,13 +55,53 @@
     
                 <label for="dataAplicacao">Data de Aplicação:</label>
                 <input type="date" id="dataAplicacao" required>
+
+                <div class="select-estrategia">
+                    <label for="estrategia">Estratégia</label>
+                    <select name="estrategia" id="estrategia">
+                        <option value="campanha">Campanha</option>
+                        <option value="rotina">Rotina</option>
+
+                    </select>
+                </div>
     
                 <button type="submit">Salvar Aplicação</button>
             </form>
         </div>
     </div>
+
+    <div class="modal-pesquisarCrianca">
+        <div class="pesquisarCrianca">
+            <h2>Pesquisar Criança</h2>
+            <form id="crianca">
+                <div class="select-tipoPesquisa">
+                    <label for="tipoPesquisa">Pesquisar por:</label>
+                    <select name="tipoPesquisa" id="tipoPesquisa">
+                        <option value="nome">Nome</option>
+                        <option value="cpf">CPF</option>
+                        <option value="sus">SUS</option>
+                        <option value="cns">CNS</option>
+                        <option value="dataNascimento">Data de Nascimento</option>
+                        <option value="mae">Nome da Mãe</option>
+
+
+
+
+                    </select>
+                </div>
+                <input type="text" id="campoPesquisa" placeholder="Digite o valor da pesquisa">
+               
+                
+    
+                <button type="submit">Selecionar Criança</button>
+            </form>
+        </div>
+    </div>
     
 
-    <script src="./js/api.js"></script>
+    <script src="./js/api.js">
+    
+  
+    </script>
 </body>
 </html>

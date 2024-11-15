@@ -33,7 +33,7 @@
     
             <form class="form">
            
-                <label for="n-numero">Nº :</label>
+                <label for="m-numero">Nº :</label>
                 <input type="text" id="n-numero">
             
             
@@ -61,7 +61,7 @@
                 <label for="m-país">País :</label>
                 <input type="text" id="m-país">
         
-                <button id="btnSalvar" >salvar</button>
+                <button id="btnSalvarFamilia" >salvar</button>
             </form>
                 
                 
@@ -81,11 +81,14 @@
             <input id="m-cpf" type="number" />
 
 
-            <label for="m-rg">RG</label>
-            <input id="m-rg" type="number"  />
+            <label for="m-sus">SUS</label>
+            <input id="m-sus" type="number"  />
 
             <label for="m-alergia">Alergia</label>
             <input id="m-alergia" type="text"  />
+
+            <label for="m-nomeMae">Nome da Mãe</label>
+            <input id="m-nomeMae" type="text"  />
 
             <div class="all-selects">
                 <div class="select">
@@ -97,14 +100,6 @@
                     </select>
                 </div>
 
-                <div class="select">
-                    <label for="m-categoria">Categoria</label>
-                    <select name="m-categoria" id="m-categoria" >
-                        <option value="pai">Pai</option>
-                        <option value="mae">Mãe</option>
-                        <option value="filho">filho(a)</option>
-                    </select>
-                </div>
 
                 <div class="select">
                 <label for="m-tipoSanguineo">Tipo Sanguíneo</label>
@@ -125,7 +120,7 @@
                 </select>
                 </div>
             </div>
-            <button id="btnSalvarModal">Salvar</button>
+            <button id="btnSalvarCrianca">Salvar</button>
           </form>
         </div>
     </div>
