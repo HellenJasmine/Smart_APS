@@ -24,7 +24,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--forty-color);
+  background-color: var(--primary-color);
   
 }
 
@@ -36,7 +36,7 @@ button {
     width: 90%;
     height: 80%;
     border-radius: 10px;
-    background: white;
+    background: var(--text-color);
     display: flex;
     flex-direction: column;
 
@@ -67,7 +67,7 @@ h2, h3 {
   margin: 2px 10px;
   border: transparent;
   border-radius: 5px;
-  background-color: white;
+  background-color: var(--text-color);
   color:var(--primary-color);
   cursor: pointer;
   font-size: 16px;
@@ -78,14 +78,14 @@ h2, h3 {
   margin: 0px;
   width: 100%;
   border: transparent;
-  background-color: white;
+  background-color: var(--text-color);
   color:var(--primary-color);
   cursor: pointer;
   font-size: 14px;
 }
 
 select:hover {
-  border-color: #d75e01;
+  border-color: var(--second-color);
 }
 
 
@@ -236,7 +236,7 @@ tbody tr td.acao {
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  background-color: white;
+  background-color: var(--text-color);
   border-radius: 10px;
   width: 50%;
 }
@@ -246,7 +246,7 @@ tbody tr td.acao {
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  background-color: white;
+  background-color: var(--text-color);
   border-radius: 10px;
   width: 80%;
   max-width: 90%;
@@ -261,22 +261,27 @@ tbody tr td.acao {
   width: 100%;
 }
 
-.pesquisarCrianca input {
+#crianca input {
   width: 100%;
   outline: none;
   padding: 5px 10px; 
   width: 100%;
-  margin-bottom: 20px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-}
+  margin-bottom: 10px;
 
+  border-radius: 20px;
+  padding: 2px 15px;
+  
+  border: #111B62 solid 1px;
+  color: var(--text-color);
+}
 
 #tipoPesquisa {
   display: flex;
   flex-direction: column;
   align-items: start;
+  flex-wrap: wrap;
+  gap: 10px;
+
 }
 
 #tipoPesquisa label {
@@ -285,6 +290,7 @@ tbody tr td.acao {
   font-size: 14px; /* Ajuste o tamanho da fonte */
   color: var(--primary-color); /* Mantém a consistência das cores */
   cursor: pointer; /* Faz o cursor mudar ao passar sobre o texto */
+  white-space: nowrap;
 }
 
 #tipoPesquisa input {
@@ -292,21 +298,24 @@ tbody tr td.acao {
   display: flex;
   justify-content: center;
   margin: auto;
+  border-radius: 20px;
   align-self: center;
+
 }
 
 .pesquisarCrianca form button {
-  background-color: #d75e01;
+  background-color: var(--primary-color);
   color: white;
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
+
 }
 
 .pesquisarCrianca form button:hover {
-  background-color: #e76d0f;
+  background-color: var(--third-color);
 }
 
 
@@ -347,8 +356,8 @@ tbody tr td.acao {
 
 
 .modal form button {
-    background-color: #d75e01;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -357,7 +366,7 @@ tbody tr td.acao {
 }
 
 form button:hover {
-    background-color: #e76d0f;
+    background-color: var(--third-color);
 }
 
 

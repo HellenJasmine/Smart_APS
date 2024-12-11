@@ -74,21 +74,33 @@
         <div class="pesquisarCrianca">
             <h2>Pesquisar Criança</h2>
             <form id="crianca">
-                <div class="select-tipoPesquisa">
-                    <label for="tipoPesquisa">Pesquisar por:</label>
-                    <select name="tipoPesquisa" id="tipoPesquisa">
-                        <option value="nome">Nome</option>
-                        <option value="cpf">CPF</option>
-                        <option value="sus">SUS</option>
-                        <option value="cns">CNS</option>
-                        <option value="dataNascimento">Data de Nascimento</option>
-                        <option value="mae">Nome da Mãe</option>
-
-
-
-
-                    </select>
+                <div id="tipoPesquisa">
+                    <label>
+                        <input type="radio" name="tipoPesquisa" value="nome" checked>
+                        Nome
+                    </label>
+                    <label>
+                        <input type="radio" name="tipoPesquisa" value="cpf">
+                        CPF
+                    </label>
+                    <label>
+                        <input type="radio" name="tipoPesquisa" value="sus">
+                        SUS
+                    </label>
+                    <label>
+                        <input type="radio" name="tipoPesquisa" value="cns">
+                        CNS
+                    </label>
+                    <label>
+                        <input type="radio" name="tipoPesquisa" value="dataNascimento">
+                        Data de Nascimento
+                    </label>
+                    <label>
+                        <input type="radio" name="tipoPesquisa" value="mae">
+                        Nome da Mãe
+                    </label>
                 </div>
+                
                 <input type="text" id="campoPesquisa" placeholder="Digite o valor da pesquisa">
                
                 
