@@ -10,12 +10,11 @@
 
 
 :root{
-    --primary-color: #d75e01;
-    --second-color: #e76d0f;
-    --third-color: #ff954a;
-    --forty-color: #ff7d03;
-    --text-color: #fff;
-    
+  --primary-color: #3451BA;
+  --second-color: #8193D4;
+  --third-color: #111B62;
+  --forty-color: #130f90;
+  --text-color: #F1F2FA;
 }
 
 body {
@@ -274,13 +273,27 @@ tbody tr td.acao {
 }
 
 
-.pesquisarCrianca select{
-  width: 90%;
-  color: var(--primary-color);
-  border-radius: 5px;
-  border: 1px solid var(--second-color);
+#tipoPesquisa {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
+#tipoPesquisa label {
+  display: flex;
+  align-items: center;
+  font-size: 14px; /* Ajuste o tamanho da fonte */
+  color: var(--primary-color); /* Mantém a consistência das cores */
+  cursor: pointer; /* Faz o cursor mudar ao passar sobre o texto */
+}
+
+#tipoPesquisa input {
+  margin-right: 40px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-self: center;
+}
 
 .pesquisarCrianca form button {
   background-color: #d75e01;

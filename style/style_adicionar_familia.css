@@ -9,12 +9,11 @@
 
 
 :root{
-    --primary-color: #d75e01;
-    --second-color: #e76d0f;
-    --third-color: #ff954a;
-    --forty-color: #ff7d03;
-    --text-color: #fff;
-    
+  --primary-color: #3451BA;
+  --second-color: #8193D4;
+  --third-color: #111B62;
+  --forty-color: #130f90;
+  --text-color: #F1F2FA;
 }
 
 body {
@@ -24,7 +23,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--forty-color);
+  background-color: var(--primary-color);
   
 }
 
@@ -102,7 +101,7 @@ form input{
 
 
 .form-crianca form button {
-  background-color: #d75e01;
+  background-color: var(--primary-color);
   color: white;
   padding: 8px;
   border: none;
@@ -117,7 +116,7 @@ form input{
 }
 
 .form-crianca form button:hover {
-  background-color: #e76d0f;
+  background-color: var(--third-color);
 }
 
 
