@@ -72,13 +72,18 @@ label{
     border-radius: 20px;
     padding: 1px 15px;
     margin-bottom: 20px;
-    background: rgba(253, 223, 168, 0.5);
+    background: var(--second-color);
+    color: var(--text-color);
     flex-direction: row;
 }
 .input input{
     border: none;
     background: transparent;
 
+}
+input::placeholder{
+    color: var(--text-color);
+    font-size: 14px;
 }
 
 a{
