@@ -272,7 +272,7 @@ tbody tr td.acao {
   padding: 2px 15px;
   
   border: #111B62 solid 1px;
-  color: var(--text-color);
+  color: var(--forty-color);
 }
 
 #tipoPesquisa {
