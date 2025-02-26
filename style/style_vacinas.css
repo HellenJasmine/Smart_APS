@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+:root{
+  --primary-color: #3451BA;
+  --second-color: #8193D4;
+  --third-color: #111B62;
+  --forty-color: #130f90;
+  --text-color: #F1F2FA;
+}
+
+body {
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+.container {
+    
+    width: 100%;
+    max-width: 100vh;
+    background: var(--forty-color);
+    padding: 20px;
+    border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    overflow-y: auto;
+    max-height: 100vh;
+    color:var(--forty-color)
+}
+.vacina {
+    background: var(--second-color);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.vacina h1 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 20px;
+}
+.vacina span, .vacina h2, .vacina h3 {
+    display: block;
+    margin-top: 10px;
+    color: var(--text-color);
+}
