@@ -93,7 +93,7 @@ select:hover {
 
 .divTable {
   padding: 10px;
-  height: 40%;
+  height: 100%;
   width: auto; 
   overflow:auto;
   color:var(--primary-color)
@@ -121,7 +121,7 @@ select:hover {
 
 .divTable::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: red; 
+  background-color: rgb(68, 0, 255); 
 }
 
 table {

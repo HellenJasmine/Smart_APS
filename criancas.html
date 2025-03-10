@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Crianças</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Lista de Crianças</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+            </tr>
+        </thead>
+        <tbody id="listaCriancas"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listaCriancas = document.getElementById('listaCriancas');
+            const criancas = JSON.parse(localStorage.getItem('dbcriancas')) || [];
+
+            criancas.forEach((crianca, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><a href="cartao.html?index=${index}">${crianca.nome}</a></td>
+                    <td>${crianca.dataNascimento}</td>
+                `;
+                listaCriancas.appendChild(tr);
+            });
+        });
+    </script>
+
+</body>
+</html>
