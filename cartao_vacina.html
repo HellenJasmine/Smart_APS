@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./style/style_cartao_vacina.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Atualizar Cartão de Vacinas</title>
+    
 </head>
 <body>
 
@@ -13,7 +14,15 @@
         <div class="header">
             <span>Cartão de Vacinas</span>
         </div>
-        <h2 id="nomeCrianca">Nome do Paciente</h2>
+        <div class="info-crianca" >
+            <h2 id="nomeCrianca">Nome do Paciente</h2>
+            <p id="idadeCrianca"></p>
+            <p id="dataNascimentoCrianca"></p>
+            <strong id="cpfCrianca"></strong>
+            <strong id="cnsCrianca"></strong>
+
+        </div>
+
         
         
         <div class="filter-vacina">
@@ -26,17 +35,7 @@
 
             </select>
         </div>
-        <div class="divTable">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome da Vacina</th>
-                        <th class="acao">Registrar</th>
-                    </tr>
-                </thead>
-                <tbody id="vacinaTableBody"></tbody>
-            </table>
-        </div>
+        <div id="vacinas-container"></div>
     </div>
     
     <!-- Modal para Atualização da Vacina -->
@@ -98,18 +97,17 @@
                 </div>
                 
                 <input type="text" id="campoPesquisa" placeholder="Digite o valor da pesquisa">
-               
                 
     
                 <button type="submit">Selecionar Criança</button>
             </form>
         </div>
     </div>
-    
-
     <script src="./js/api.js">
     
   
     </script>
-</body>
+
+    </body>
 </html>
+

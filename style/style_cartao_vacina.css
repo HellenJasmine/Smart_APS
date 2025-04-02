@@ -1,20 +1,493 @@
 
+
+
+.titulo {
+
+  text-align: center;
+
+  color: #333;
+
+  margin-bottom: 10px;
+
+  }
+
+.info {
+
+  text-align: center;
+
+  color: #666;
+
+  margin-bottom: 20px;
+
+  }
+
+  .vacina-titulo {
+  background-color: #f0f8ff;
+
+  padding: 10px;
+
+  border-radius: 5px;
+
+  margin-bottom: 10px;
+
+  text-align: center;
+
+  color: #1a237e;
+
+  font-weight: bold;
+
+  }
+
+.vacina-row {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  border-bottom: 1px solid #eee;
+
+  padding: 10px 0;
+
+  }
+
+.vacina-row:last-child {
+
+  border-bottom: none;
+
+  }
+
+.vacina-nome {
+
+  font-weight: bold;
+
+  color: #333;
+
+}
+
+.dose-info {
+
+  background-color: #e0f7fa;
+  display: flex;
+  flex-direction: column;
+  color: #1a237e;
+  align-items: center;
+  padding: 8px 12px;
+  text-align: center;
+  border-radius: 5px;
+
+  font-size: 0.9em;
+
+}
+.dose-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.data-aplicacao {
+  font-size: 0.9em;
+  margin-top: 5px;
+  color: var(--text-color);
+}
+
+
+.dose-text {
+  font-weight: bold;
+}
+
+.data-text {
+  font-size: 0.9em;
+  margin-top: 5px;
+  color: var(--text-color); /* Pode ajustar a cor conforme necessário */
+}
+
+/* Estilo para vacina aplicada */
+.vacina-aplicada {
+  background-color: #28a745; /* Verde para aplicada */
+  color: #fff;
+}
+
+/* Estilo para vacina pendente */
+.vacina-pendente {
+  background-color: #6c757d; /* Cinza para pendente */
+  color: #fff;
+}
+
+/* Estilo para vacina atrasada */
+.vacina-atrasada {
+  background-color: #dc3545; /* Vermelho para atrasada */
+  color: #fff;
+}
+
+.dose-info .vacina-aplicada {
+  background-color: #28a745; /* Verde para aplicada */
+  color: #fff;
+}
+
+.info-crianca{
+  display: flex;
+  color: var(--forty-color);
+  font-size: 0.9em;
+  text-transform: uppercase;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* ------------------------ */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
 }
 
 
 :root{
-  --primary-color: #3451BA;
-  --second-color: #8193D4;
-  --third-color: #111B62;
-  --forty-color: #130f90;
-  --text-color: #F1F2FA;
+--primary-color: #3451BA;
+--second-color: #8193D4;
+--third-color: #111B62;
+--forty-color: #130f90;
+--text-color: #F1F2FA;
+}
+
+body {
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: var(--primary-color);
+
+}
+
+button {
+cursor: pointer;
+}
+
+.container {
+width: 90%;
+height: 80%;
+border-radius: 10px;
+background: var(--text-color);
+display: flex;
+flex-direction: column;
+background-color: white;
+padding: 20px;
+max-width: 600px;
+margin: 0 auto;
+
+}
+#vacinas-container {
+  height: 400px; 
+  overflow-y: auto; 
+  padding: 10px; 
+  border: 1px solid #ddd; 
+  background-color: #fff; 
+  border-radius: 10px;
+ 
+}
+
+
+
+.header {
+justify-content: space-between;
+margin: 10px 12px;
+color:var(--primary-color);
+text-align: center;
+font-weight: 900;
+font-size: 24px;
+word-break: break-all;
+
+}
+h2, h3 {
+font-size: 18px;
+text-align: center;
+color:var(--primary-color);
+}
+
+.filter-vacina {
+text-align: end;
+align-self: flex-end;
+margin: 5px;
+width: 30%;
+padding: 5px;
+margin: 2px 10px;
+border: transparent;
+border-radius: 5px;
+background-color: var(--text-color);
+color:var(--primary-color);
+cursor: pointer;
+font-size: 16px;
+}
+.filter-vacina select{
+display: flex;
+text-align: end;
+margin: 0px;
+width: 100%;
+border: transparent;
+background-color: var(--text-color);
+color:var(--primary-color);
+cursor: pointer;
+font-size: 14px;
+}
+
+select:hover {
+border-color: var(--second-color);
+}
+
+
+
+
+.divTable {
+padding: 10px;
+height: 100%;
+width: auto; 
+overflow:auto;
+color:var(--primary-color)
+}
+
+
+.input{
+height: 20px;
+border-radius: 20px;
+padding: 0.5px 10px;
+margin-bottom: 1px;
+background: rgba(253, 223, 168, 0.5);
+flex-direction: column;
+}
+.input input{
+border: none;
+background: transparent;
+}
+
+
+
+
+
+@media (max-width: 700px) {
+body {
+font-size: 10px;
+}
+
+.header span {
+font-size: 15px;
+}
+
+#new {
+padding: 5px;
+font-size: 10px;
+}
+
+
+
+.modal {
+width: 90%!important;
+}
+
+.modal label {
+font-size: 12px!important;
+}
+}
+
+.modal-container {
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+left: 0;
+background-color: rgba(0, 0, 0, 0.5);
+display: none;
+z-index: 999;
+align-items: center;
+justify-content: center;
+}
+.modal-pesquisarCrianca{
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+left: 0;
+background-color: rgba(0, 0, 0, 0.5);
+display: none;
+z-index: 999;
+align-items: center;
+justify-content: center;
+}
+
+.modal  {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 40px;
+background-color: var(--text-color);
+border-radius: 10px;
+width: 50%;
+}
+
+.pesquisarCrianca {
+
+flex-direction: column;
+align-items: center;
+padding: 40px;
+background-color: var(--text-color);
+border-radius: 10px;
+width: 80%;
+max-width: 90%;
+}
+
+.modal-pesquisarCrianca.active{
+display: flex;
+}
+
+.modal label {
+font-size: 14px;
+width: 100%;
+}
+
+#crianca input {
+width: 100%;
+outline: none;
+padding: 5px 10px; 
+width: 100%;
+margin-bottom: 10px;
+
+border-radius: 20px;
+padding: 2px 15px;
+
+border: #111B62 solid 1px;
+color: var(--forty-color);
+}
+
+#tipoPesquisa {
+display: flex;
+flex-direction: column;
+align-items: start;
+flex-wrap: wrap;
+gap: 10px;
+
+}
+
+#tipoPesquisa label {
+display: flex;
+align-items: center;
+font-size: 14px; 
+color: var(--primary-color); 
+cursor: pointer;
+white-space: nowrap;
+} 
+#tipoPesquisa input {
+margin-right: 40px;
+display: flex;
+justify-content: center;
+margin: auto;
+border-radius: 20px;
+align-self: center;
+
+}
+
+.pesquisarCrianca form button {
+background-color: var(--primary-color);
+color: white;
+padding: 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+width: 100%;
+
+}
+
+.pesquisarCrianca form button:hover {
+background-color: var(--third-color);
+}
+
+
+.modal label {
+display: block;
+margin-bottom: 5px;
+color: var(--primary-color);
+}
+
+.modal form input {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+color:var(--primary-color);
+}
+.modal .all-selects {
+
+width: 100%;
+display: flex;
+flex-direction: row;
+align-self: flex-start;
+justify-content: space-between;
+
+}
+.modal select{
+text-align: center;
+margin-bottom: 15px;
+
+}
+.modal .select-estrategia select{
+width: 100%;
+color: var(--primary-color);
+border-radius: 5px;
+border: 1px solid var(--second-color);
+}
+
+
+.modal form button {
+background-color: var(--primary-color);
+color: var(--text-color);
+padding: 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+width: 100%;
+}
+
+form button:hover {
+background-color: var(--third-color);
+}
+
+
+.active {
+display: flex;
+}
+
+.active .modal {
+animation: modal .4s;
+}
+
+
+@keyframes modal {
+from {
+opacity: 0;
+transform: translate3d(0, -60px, 0);
+}
+to {
+opacity: 1;
+transform: translate3d(0, 0, 0);
+}
+}
+
+/* 
+body, button, input, select {
+  font-family: 'Poppins', sans-serif;
+}
+
+h2, h3, .header {
+  text-align: center;
+  color: var(--primary-color);
 }
 
 body {
@@ -25,188 +498,34 @@ body {
   align-items: center;
   justify-content: center;
   background-color: var(--primary-color);
-  
-}
-
-button {
-    cursor: pointer;
 }
 
 .container {
-    width: 90%;
-    height: 80%;
-    border-radius: 10px;
-    background: var(--text-color);
-    display: flex;
-    flex-direction: column;
-
-}
-
-.header {
-  justify-content: space-between;
-  margin: 10px 12px;
-  color:var(--primary-color);
-  text-align: center;
-  font-weight: 900;
-  font-size: 24px;
-  word-break: break-all;
-    
-}
-h2, h3 {
-  font-size: 18px;
-  text-align: center;
-  color:var(--primary-color);
-}
-
-.filter-vacina {
-  text-align: end;
-  align-self: flex-end;
-  margin: 5px;
-  width: 30%;
-  padding: 5px;
-  margin: 2px 10px;
-  border: transparent;
-  border-radius: 5px;
-  background-color: var(--text-color);
-  color:var(--primary-color);
-  cursor: pointer;
-  font-size: 16px;
-}
-.filter-vacina select{
-  display: flex;
-  text-align: end;
-  margin: 0px;
-  width: 100%;
-  border: transparent;
-  background-color: var(--text-color);
-  color:var(--primary-color);
-  cursor: pointer;
-  font-size: 14px;
-}
-
-select:hover {
-  border-color: var(--second-color);
-}
-
-
-
-
-.divTable {
-  padding: 10px;
-  height: 100%;
-  width: auto; 
-  overflow:auto;
-  color:var(--primary-color)
-}
-
-
-.input{
-  height: 20px;
-  border-radius: 20px;
-  padding: 0.5px 10px;
-  margin-bottom: 1px;
-  background: rgba(253, 223, 168, 0.5);
-  flex-direction: column;
-}
-.input input{
-  border: none;
-  background: transparent;
-}
-
-.divTable::-webkit-scrollbar {
-  width: 12px;
-  background-color: whitesmoke;
- 
-}
-
-.divTable::-webkit-scrollbar-thumb {
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
   border-radius: 10px;
-  background-color: rgb(68, 0, 255); 
+  background: white;
+  margin: 0 auto;
 }
 
-table {
+
+button, .pesquisarCrianca form button {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
   width: 100%;
-  border-spacing: 10px;
-  word-break: break-all;
-  border-collapse: collapse;
-  
 }
 
-thead {
-  background-color: whitesmoke;
+button:hover, .pesquisarCrianca form button:hover {
+  background-color: var(--third-color);
 }
 
-tr {
-  border-bottom: 1px solid rgb(238, 235, 235)!important;
-}
 
-tbody tr td {
-  vertical-align: text-top;
-  padding: 6px;
-  max-width: 50px;
-  
-}
-
-thead tr th {
-  padding: 5px;
-  text-align: start;
-  margin-bottom: 50px;
-}
-
-tbody tr {
-  margin-bottom: 50px;
-  
-}
-tbody tr a{
-  text-decoration: none;
-  
-}
-
-thead tr th.acao {
-  width: 100px!important;
-  text-align: center;
-}
-
-tbody tr td.acao {
-  text-align: center;
-}
-
-@media (max-width: 700px) {
-  body {
-    font-size: 10px;
-  }
-  
-  .header span {
-    font-size: 15px;
-  }
-
-  #new {
-    padding: 5px;
-    font-size: 10px;
-  }
-
-  thead tr th.acao {
-    width: auto!important;
-  }
-  
-  td button i {
-    font-size: 20px!important;
-  }
-
-  td button i:first-child {
-    margin-right: 0;
-  }
-
-  .modal {
-    width: 90%!important;
-  }
-
-  .modal label {
-    font-size: 12px!important;
-  }
-}
-
-.modal-container {
+.modal-container, .modal-pesquisarCrianca {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -214,24 +533,12 @@ tbody tr td.acao {
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
-  z-index: 999;
   align-items: center;
   justify-content: center;
-}
-.modal-pesquisarCrianca{
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
   z-index: 999;
-  align-items: center;
-  justify-content: center;
 }
 
-.modal  {
+.modal, .pesquisarCrianca {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -241,167 +548,9 @@ tbody tr td.acao {
   width: 50%;
 }
 
-.pesquisarCrianca {
 
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-  background-color: var(--text-color);
-  border-radius: 10px;
-  width: 80%;
-  max-width: 90%;
-}
-
-.modal-pesquisarCrianca.active{
-  display: flex;
-}
-
-.modal label {
-  font-size: 14px;
-  width: 100%;
-}
-
-#crianca input {
-  width: 100%;
-  outline: none;
-  padding: 5px 10px; 
-  width: 100%;
-  margin-bottom: 10px;
-
-  border-radius: 20px;
-  padding: 2px 15px;
-  
-  border: #111B62 solid 1px;
-  color: var(--forty-color);
-}
-
-#tipoPesquisa {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  flex-wrap: wrap;
-  gap: 10px;
-
-}
-
-#tipoPesquisa label {
-  display: flex;
-  align-items: center;
-  font-size: 14px; /* Ajuste o tamanho da fonte */
-  color: var(--primary-color); /* Mantém a consistência das cores */
-  cursor: pointer; /* Faz o cursor mudar ao passar sobre o texto */
-  white-space: nowrap;
-}
-
-#tipoPesquisa input {
-  margin-right: 40px;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  border-radius: 20px;
-  align-self: center;
-
-}
-
-.pesquisarCrianca form button {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-
-}
-
-.pesquisarCrianca form button:hover {
-  background-color: var(--third-color);
-}
-
-
-.modal label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--primary-color);
-}
-
-.modal form input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    color:var(--primary-color);
-}
-.modal .all-selects {
- 
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-self: flex-start;
-  justify-content: space-between;
-
-}
-.modal select{
-  text-align: center;
-  margin-bottom: 15px;
-
-}
-.modal .select-estrategia select{
-  width: 100%;
-  color: var(--primary-color);
-  border-radius: 5px;
-  border: 1px solid var(--second-color);
-}
-
-
-.modal form button {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-}
-
-form button:hover {
-    background-color: var(--third-color);
-}
-
-
-.active {
-  display: flex;
-}
-
-.active .modal {
-  animation: modal .4s;
-}
-
-
-@keyframes modal {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -60px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-td button {
-  border: none;
-  outline: none;
-  background: transparent;
-  color:var(--primary-color);
-}
-
-td button i {
-  font-size: 25px;
-}
-
-td button i:first-child {
-  margin-right: 10px;
-}
-
+@media (max-width: 700px) {
+  body { font-size: 10px; }
+  .header { font-size: 15px; }
+  .modal, .pesquisarCrianca { width: 90%!important; }
+}  */

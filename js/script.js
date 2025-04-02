@@ -399,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localidade,
             nomeMae,
             sexo,
-            cartaoVacina: [] // Adiciona o atributo para armazenar vacinas futuras
+            cartaoVacina: {} // Adiciona o atributo para armazenar vacinas futuras
         };
 
         // Carregar famílias do localStorage
