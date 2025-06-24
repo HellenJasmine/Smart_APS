@@ -380,13 +380,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const nome = document.getElementById("m-nome").value.trim();
         const dataNascimento = document.getElementById("m-dataNascimento").value;
         const cpf = document.getElementById("m-cpf").value.trim();
-        const sus = document.getElementById("m-sus").value.trim();
+        const cns = document.getElementById("m-cns").value.trim();
         const localidade = document.getElementById("m-localidade").value.trim();
         const nomeMae = document.getElementById("m-nomeMae").value.trim();
         const sexo = document.getElementById("m-sexo").value;
 
         // Verificação de campos vazios
-        if (!nome || !dataNascimento || !cpf || !sus || !localidade || !nomeMae) {
+        if (!nome || !dataNascimento || !cpf || !cns || !localidade || !nomeMae) {
             alert("Por favor, preencha todos os campos.");
             return;
         }
@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome,
             dataNascimento,
             cpf,
-            sus,
+            cns,
             localidade,
             nomeMae,
             sexo,
