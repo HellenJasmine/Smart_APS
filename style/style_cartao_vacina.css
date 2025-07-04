@@ -1,556 +1,296 @@
+/* --- 1. IMPORTAÇÃO DE FONTE --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap');
 
-
-
-.titulo {
-
-  text-align: center;
-
-  color: #333;
-
-  margin-bottom: 10px;
-
-  }
-
-.info {
-
-  text-align: center;
-
-  color: #666;
-
-  margin-bottom: 20px;
-
-  }
-
-  .vacina-titulo {
-  background-color: #f0f8ff;
-
-  padding: 10px;
-
-  border-radius: 5px;
-
-  margin-bottom: 10px;
-
-  text-align: center;
-
-  color: #1a237e;
-
-  font-weight: bold;
-
-  }
-
-.vacina-row {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  border-bottom: 1px solid #eee;
-
-  padding: 10px 0;
-
-  }
-
-.vacina-row:last-child {
-
-  border-bottom: none;
-
-  }
-
-.vacina-nome {
-
-  font-weight: bold;
-
-  color: #333;
-
+/* --- 2. VARIÁVEIS DE COR --- */
+:root {
+    --primary-color: #3451BA;
+    --second-color: #8193D4;
+    --third-color: #111B62;
+    --forty-color: #130f90;
+    --text-color: #F1F2FA; /* Branco azulado, usado em fundos */
+    
+    /* Cores de Status */
+    --cor-aplicada: #28a745;
+    --cor-atrasada: #dc3545;
+    --cor-pendente: #6c757d;
 }
 
-.dose-info {
-
-  background-color: #e0f7fa;
-  display: flex;
-  flex-direction: column;
-  color: #1a237e;
-  align-items: center;
-  padding: 8px 12px;
-  text-align: center;
-  border-radius: 5px;
-
-  font-size: 0.9em;
-
-}
-.dose-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.data-aplicacao {
-  font-size: 0.9em;
-  margin-top: 5px;
-  color: var(--text-color);
-}
-
-
-.dose-text {
-  font-weight: bold;
-}
-
-.data-text {
-  font-size: 0.9em;
-  margin-top: 5px;
-  color: var(--text-color); /* Pode ajustar a cor conforme necessário */
-}
-
-/* Estilo para vacina aplicada */
-.vacina-aplicada {
-  background-color: #28a745; /* Verde para aplicada */
-  color: #fff;
-}
-
-/* Estilo para vacina pendente */
-.vacina-pendente {
-  background-color: #6c757d; /* Cinza para pendente */
-  color: #fff;
-}
-
-/* Estilo para vacina atrasada */
-.vacina-atrasada {
-  background-color: #dc3545; /* Vermelho para atrasada */
-  color: #fff;
-}
-
-.dose-info .vacina-aplicada {
-  background-color: #28a745; /* Verde para aplicada */
-  color: #fff;
-}
-
-.info-crianca{
-  display: flex;
-  color: var(--forty-color);
-  font-size: 0.9em;
-  text-transform: uppercase;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-/* ------------------------ */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
-
+/* --- 3. ESTILOS GERAIS E RESET --- */
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Poppins', sans-serif;
-}
-
-
-:root{
---primary-color: #3451BA;
---second-color: #8193D4;
---third-color: #111B62;
---forty-color: #130f90;
---text-color: #F1F2FA;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-width: 100vw;
-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-background-color: var(--primary-color);
-
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--primary-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button {
-cursor: pointer;
+    cursor: pointer;
 }
 
+/* --- 4. LAYOUT PRINCIPAL E CABEÇALHO --- */
 .container {
-width: 90%;
-height: 80%;
-border-radius: 10px;
-background: var(--text-color);
-display: flex;
-flex-direction: column;
-background-color: white;
-padding: 20px;
-max-width: 600px;
-margin: 0 auto;
-
+    width: 90%;
+    max-width: 600px;
+    height: 80%;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
-#vacinas-container {
-  height: 400px; 
-  overflow-y: auto; 
-  padding: 10px; 
-  border: 1px solid #ddd; 
-  background-color: #fff; 
-  border-radius: 10px;
- 
-}
-
-
 
 .header {
-justify-content: space-between;
-margin: 10px 12px;
-color:var(--primary-color);
-text-align: center;
-font-weight: 900;
-font-size: 24px;
-word-break: break-all;
-
-}
-h2, h3 {
-font-size: 18px;
-text-align: center;
-color:var(--primary-color);
+    color: var(--primary-color);
+    text-align: center;
+    font-weight: 900;
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
+.info-crianca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--forty-color);
+    font-size: 0.9em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* --- 5. FILTRO DE VACINAS --- */
 .filter-vacina {
-text-align: end;
-align-self: flex-end;
-margin: 5px;
-width: 30%;
-padding: 5px;
-margin: 2px 10px;
-border: transparent;
-border-radius: 5px;
-background-color: var(--text-color);
-color:var(--primary-color);
-cursor: pointer;
-font-size: 16px;
-}
-.filter-vacina select{
-display: flex;
-text-align: end;
-margin: 0px;
-width: 100%;
-border: transparent;
-background-color: var(--text-color);
-color:var(--primary-color);
-cursor: pointer;
-font-size: 14px;
+    align-self: flex-end; /* Alinha o container do filtro à direita */
+    margin-bottom: 10px;
 }
 
-select:hover {
-border-color: var(--second-color);
+.filter-vacina select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--second-color);
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 }
 
-
-
-
-.divTable {
-padding: 10px;
-height: 100%;
-width: auto; 
-overflow:auto;
-color:var(--primary-color)
+.filter-vacina select:hover {
+    border-color: var(--primary-color);
 }
 
-
-.input{
-height: 20px;
-border-radius: 20px;
-padding: 0.5px 10px;
-margin-bottom: 1px;
-background: rgba(253, 223, 168, 0.5);
-flex-direction: column;
-}
-.input input{
-border: none;
-background: transparent;
+/* --- 6. LISTA DE VACINAS --- */
+#vacinas-container {
+    flex-grow: 1; /* Faz o container ocupar o espaço restante */
+    overflow-y: auto;
+    padding-right: 10px; /* Espaço para a barra de rolagem */
 }
 
-
-
-
-
-@media (max-width: 700px) {
-body {
-font-size: 10px;
+.vacina-titulo {
+    background-color: #eef2ff; /* Tom de azul mais suave */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px 0 10px 0;
+    text-align: center;
+    color: var(--third-color);
+    font-weight: bold;
 }
 
-.header span {
-font-size: 15px;
+.vacina-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 12px 5px;
 }
 
-#new {
-padding: 5px;
-font-size: 10px;
+.vacina-nome {
+    font-weight: bold;
+    color: #333;
 }
 
-
-
-.modal {
-width: 90%!important;
+.dose-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    text-align: center;
+    min-width: 110px; /* Largura mínima para consistência */
 }
 
-.modal label {
-font-size: 12px!important;
-}
-}
-
-.modal-container {
-width: 100vw;
-height: 100vh;
-position: fixed;
-top: 0;
-left: 0;
-background-color: rgba(0, 0, 0, 0.5);
-display: none;
-z-index: 999;
-align-items: center;
-justify-content: center;
-}
-.modal-pesquisarCrianca{
-width: 100vw;
-height: 100vh;
-position: fixed;
-top: 0;
-left: 0;
-background-color: rgba(0, 0, 0, 0.5);
-display: none;
-z-index: 999;
-align-items: center;
-justify-content: center;
+.dose-text {
+    font-weight: bold;
 }
 
-.modal  {
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 40px;
-background-color: var(--text-color);
-border-radius: 10px;
-width: 50%;
+.data-text {
+    font-size: 0.9em;
+    margin-top: 5px;
 }
 
-.pesquisarCrianca {
-
-flex-direction: column;
-align-items: center;
-padding: 40px;
-background-color: var(--text-color);
-border-radius: 10px;
-width: 80%;
-max-width: 90%;
+/* CORES DE STATUS (CORRIGIDO) */
+.dose-info.vacina-aplicada {
+    background-color: var(--cor-aplicada);
+    color: #fff;
 }
 
-.modal-pesquisarCrianca.active{
-display: flex;
+.dose-info.vacina-pendente {
+    background-color: var(--cor-pendente);
+    color: #fff;
 }
 
-.modal label {
-font-size: 14px;
-width: 100%;
+.dose-info.vacina-atrasada {
+    background-color: var(--cor-atrasada);
+    color: #fff;
 }
 
-#crianca input {
-width: 100%;
-outline: none;
-padding: 5px 10px; 
-width: 100%;
-margin-bottom: 10px;
-
-border-radius: 20px;
-padding: 2px 15px;
-
-border: #111B62 solid 1px;
-color: var(--forty-color);
+/* --- 7. MODAIS (JANELAS) --- */
+.modal-container,
+.modal-pesquisarCrianca {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
 }
 
-#tipoPesquisa {
-display: flex;
-flex-direction: column;
-align-items: start;
-flex-wrap: wrap;
-gap: 10px;
-
-}
-
-#tipoPesquisa label {
-display: flex;
-align-items: center;
-font-size: 14px; 
-color: var(--primary-color); 
-cursor: pointer;
-white-space: nowrap;
-} 
-#tipoPesquisa input {
-margin-right: 40px;
-display: flex;
-justify-content: center;
-margin: auto;
-border-radius: 20px;
-align-self: center;
-
-}
-
-.pesquisarCrianca form button {
-background-color: var(--primary-color);
-color: white;
-padding: 10px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-width: 100%;
-
-}
-
-.pesquisarCrianca form button:hover {
-background-color: var(--third-color);
-}
-
-
-.modal label {
-display: block;
-margin-bottom: 5px;
-color: var(--primary-color);
-}
-
-.modal form input {
-width: 100%;
-padding: 8px;
-margin-bottom: 10px;
-border: 1px solid #ddd;
-border-radius: 5px;
-color:var(--primary-color);
-}
-.modal .all-selects {
-
-width: 100%;
-display: flex;
-flex-direction: row;
-align-self: flex-start;
-justify-content: space-between;
-
-}
-.modal select{
-text-align: center;
-margin-bottom: 15px;
-
-}
-.modal .select-estrategia select{
-width: 100%;
-color: var(--primary-color);
-border-radius: 5px;
-border: 1px solid var(--second-color);
-}
-
-
-.modal form button {
-background-color: var(--primary-color);
-color: var(--text-color);
-padding: 10px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-width: 100%;
-}
-
-form button:hover {
-background-color: var(--third-color);
-}
-
-
-.active {
-display: flex;
-}
-
-.active .modal {
-animation: modal .4s;
-}
-
-
-@keyframes modal {
-from {
-opacity: 0;
-transform: translate3d(0, -60px, 0);
-}
-to {
-opacity: 1;
-transform: translate3d(0, 0, 0);
-}
-}
-
-/* 
-body, button, input, select {
-  font-family: 'Poppins', sans-serif;
-}
-
-h2, h3, .header {
-  text-align: center;
-  color: var(--primary-color);
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--primary-color);
-}
-
-.container {
-  width: 90%;
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 10px;
-  background: white;
-  margin: 0 auto;
-}
-
-
-button, .pesquisarCrianca form button {
-  cursor: pointer;
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  width: 100%;
-}
-
-button:hover, .pesquisarCrianca form button:hover {
-  background-color: var(--third-color);
-}
-
-
-.modal-container, .modal-pesquisarCrianca {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
+/* CLASSE USADA PELO JS PARA MOSTRAR O MODAL */
+.modal-container.active,
+.modal-pesquisarCrianca.active {
+    display: flex;
 }
 
 .modal, .pesquisarCrianca {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-  background-color: var(--text-color);
-  border-radius: 10px;
-  width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.modal-container.active .modal {
+    animation: modal-animation .4s;
+}
+
+@keyframes modal-animation {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 8. FORMULÁRIOS DENTRO DOS MODAIS --- */
+.modal h2, .pesquisarCrianca h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal form, .pesquisarCrianca form {
+    width: 100%;
+}
+
+.modal label, .pesquisarCrianca label {
+    font-size: 14px;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal input, .modal select, #campoPesquisa {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--second-color);
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.modal form button, .pesquisarCrianca form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: var(--primary-color);
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.modal form button:hover, .pesquisarCrianca form button:hover {
+    background-color: var(--third-color);
+}
+
+/* Estilos específicos para a pesquisa de criança */
+#tipoPesquisa {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#tipoPesquisa label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#tipoPesquisa input[type="radio"] {
+    width: auto; /* Tamanho padrão para radio buttons */
+}
+#btnAdicionarOutraVacina {
+    display: none;
+    align-self: center;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 
+/* --- 9. MEDIA QUERIES PARA RESPONSIVIDADE --- */
 @media (max-width: 700px) {
-  body { font-size: 10px; }
-  .header { font-size: 15px; }
-  .modal, .pesquisarCrianca { width: 90%!important; }
-}  */
+    body {
+        font-size: 14px; /* Aumenta um pouco a fonte base para melhor leitura */
+    }
+
+    .container {
+        height: 90%;
+        padding: 15px;
+    }
+
+    .header {
+        font-size: 20px;
+    }
+
+    .modal, .pesquisarCrianca {
+        padding: 20px;
+    }
+}

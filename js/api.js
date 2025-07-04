@@ -1,14 +1,18 @@
-
+// Seletores de elementos do DOM
 const modalVacina = document.querySelector('.modal-container');
 const modalPesquisarCrianca = document.querySelector('.modal-pesquisarCrianca');
+const modalAdicionarOutra = document.querySelector('#modalAdicionarOutra'); // Novo modal
 
 const sVacinaNome = document.querySelector('#vacinaNome');
 const sAplicador = document.querySelector('#aplicador');
 const sLote = document.querySelector('#lote');
 const sDataAplicacao = document.querySelector('#dataAplicacao');
 const sEstrategia = document.querySelector('#estrategia');
-const btnSalvarVacina = document.querySelector('#vacinaForm');
+const vacinaForm = document.querySelector('#vacinaForm');
 const filterSelect = document.querySelector('#filterSelect');
+
+const btnAdicionarOutraVacina = document.querySelector('#btnAdicionarOutraVacina'); // Novo botão
+const outraVacinaForm = document.querySelector('#outraVacinaForm'); // Novo formulário
 
 const nomeCriancaElement = document.querySelector('#nomeCrianca');
 const idadeCriancaElement = document.querySelector('#idadeCrianca');
@@ -18,7 +22,9 @@ const cnsCriancaElement = document.querySelector('#cnsCrianca');
 let vacinaSelecionada = null;
 let criancaSelecionada = null;
 
-let vacinas = {
+// --- BANCOS DE DADOS DE VACINAS ---
+
+const vacinasRotina = {
     "Ao nascer": [
         { nome: 'BCG', dose: 'Dose única', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
         { nome: 'Hepatite B', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
@@ -44,12 +50,8 @@ let vacinas = {
     "6 meses": [
         { nome: 'Pentavalente', dose: '3º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
         { nome: 'VIP', dose: '3º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
-        { nome: 'Covid-19', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
     ],
-    "7 meses": [
-        { nome: 'Covid-19', dose: '2º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
-    ],
-    "9 meses": [
+     "9 meses": [
         { nome: 'Febre Amarela', dose: 'DOSE ÚNICA', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
     ],
     "12 meses": [
@@ -57,92 +59,105 @@ let vacinas = {
         { nome: 'Meningo C', dose: 'REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
         { nome: 'Tríplice viral', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
     ],
-    "15 meses": [
+     "15 meses": [
         { nome: 'DTP', dose: '1º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
         { nome: 'VIP', dose: 'REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
         { nome: 'Hepatite A', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
         { nome: 'Tetraviral', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
     ],
     "4 anos": [
-        { nome: 'DTP', dose: '2º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
-        { nome: 'Febre Amarela', dose: 'REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
-        { nome: 'Varicela', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
-    ],
-    "5 anos": [
-        { nome: 'Pneumocócica 23-V', dose: '2º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
-        { nome: 'Febre Amarela', dose: 'REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
-    ],
-    "7 anos": [
-        { nome: 'Difteria e Tétano', dose: '3º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
-    ],
-    "9 anos": [
-        { nome: 'HPV', dose: '3º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
-    ],
-    "10 anos": [
-        { nome: 'HPV', dose: '3º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
+        { nome: 'DTP', dose: '2º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
     ]
 };
 
+const vacinasCampanha = {
+  "Campanha Nacional": [
+    { nome: "Influenza (Gripe)", dose: "ANUAL", aplicador: "", lote: "", dataAplicacao: "", status: "naoTomadas" },
+    { nome: "Covid-19 Campanha", dose: "DOSE EXTRA", aplicador: "", lote: "", dataAplicacao: "", status: "naoTomadas" },
+    { nome: "Poliomielite Campanha", dose: "GOTINHA", aplicador: "", lote: "", dataAplicacao: "", status: "naoTomadas" }
+  ],
+  "Campanha Sazonal": [
+    { nome: "Febre Amarela Campanha", dose: "DOSE ÚNICA", aplicador: "", lote: "", dataAplicacao: "", status: "naoTomadas" },
+    { nome: "Meningite Campanha", dose: "DOSE EXTRA", aplicador: "", lote: "", dataAplicacao: "", status: "naoTomadas" }
+  ],
+  "Campanha Especial": [
+    { nome: "HPV Campanha", dose: "DOSE EXTRA", aplicador: "", lote: "", dataAplicacao: "", status: "naoTomadas" },
+    { nome: "Hepatite A Campanha", dose: "DOSE EXTRA", aplicador: "", lote: "", dataAplicacao: "", status: "naoTomadas" }
+  ]
+};
+
+let outrasVacinas = [];
+
 let container = document.getElementById('vacinas-container');
 
-Object.keys(vacinas).forEach(idade => {
-    let titulo = document.createElement('div');
-    titulo.className = 'vacina-titulo';
-    titulo.textContent = idade;
-    container.appendChild(titulo);
-    
-    vacinas[idade].forEach(vacina => {
-        let row = document.createElement('div');
-        row.className = 'vacina-row';
-        
-        let nome = document.createElement('div');
-        nome.className = 'vacina-nome';
-        nome.textContent = vacina.nome;
+// --- FUNÇÕES DE RENDERIZAÇÃO ---
 
-        let doseContainer = document.createElement('div');
-        doseContainer.className = 'dose-container';
+function renderVacinas(filter) {
+    container.innerHTML = '';
+    btnAdicionarOutraVacina.style.display = 'none';
 
-        
-        let doseInfo = document.createElement('div');
-        doseInfo.className = 'dose-info';
-        
-        let doseText = document.createElement('div');
-        doseText.className = 'dose-text';
-        doseText.textContent = vacina.dose;
-
-        let dataText = document.createElement('div');
-        dataText.className = 'data-text';
-        dataText.textContent = vacina.dataAplicacao || ''; // Mostra a data apenas se existir
-
-        doseInfo.appendChild(doseText);
-        doseInfo.appendChild(dataText);
-        
-        row.appendChild(nome);
-        row.appendChild(doseInfo);
-        container.appendChild(row);
-
-        vacina.row = row;
-        vacina.dataAplicacaoElement = dataAplicacao;
-
-        // Adiciona event listeners para abrir o modal ao clicar na dose ou no nome da vacina
-        nome.addEventListener('click', () => {
-            console.log("Cliquei no nome da vacina");
-            abrirModalVacina(vacina, row, doseInfo);
-        });
-        doseInfo.addEventListener('click', () => {
-            console.log("Cliquei na dose da vacina");
-            abrirModalVacina(vacina, row, doseInfo);
-        });
-        if (vacina.dataAplicacao) {
-            row.classList.add('vacina-aplicada');
+    if (filter === 'rotina') {
+        renderGroups(vacinasRotina);
+    } else if (filter === 'campanha') {
+        renderGroups(vacinasCampanha);
+    } else if (filter === 'outros') {
+        if (outrasVacinas.length > 0) {
+            renderGroups({ "Outras Vacinas Aplicadas": outrasVacinas });
         }
+        btnAdicionarOutraVacina.style.display = 'block';
+    }
+    atualizarCoresVacinas(); // Atualiza as cores sempre que o filtro muda
+}
 
+function renderGroups(groups) {
+    Object.keys(groups).forEach(groupName => {
+        let titulo = document.createElement('div');
+        titulo.className = 'vacina-titulo';
+        titulo.textContent = groupName;
+        container.appendChild(titulo);
+        
+        groups[groupName].forEach(vacina => {
+            let row = document.createElement('div');
+            row.className = 'vacina-row';
+            
+            let nome = document.createElement('div');
+            nome.className = 'vacina-nome';
+            nome.textContent = vacina.nome;
+
+            let doseInfo = document.createElement('div');
+            doseInfo.className = 'dose-info';
+            
+            let doseText = document.createElement('div');
+            doseText.className = 'dose-text';
+            doseText.textContent = vacina.dose;
+
+            let dataText = document.createElement('div');
+            dataText.className = 'data-text';
+            dataText.textContent = vacina.dataAplicacao || '';
+
+            doseInfo.appendChild(doseText);
+            doseInfo.appendChild(dataText);
+            
+            row.appendChild(nome);
+            row.appendChild(doseInfo);
+            container.appendChild(row);
+
+            vacina.row = row;
+
+            const openModalHandler = () => abrirModalVacina(vacina, row, doseInfo);
+            nome.addEventListener('click', openModalHandler);
+            doseInfo.addEventListener('click', openModalHandler);
+
+            if (vacina.dataAplicacao) {
+                row.classList.add('vacina-aplicada');
+            }
+        });
     });
-});
+}
 
-// Função para abrir o modal e preencher os campos do formulário
+// --- LÓGICA DOS MODAIS ---
+
 function abrirModalVacina(vacina, row, doseInfo) {
-    console.log("Abrindo modal para vacina:", vacina); 
     vacinaSelecionada = vacina;
     vacinaSelecionada.row = row;
     vacinaSelecionada.doseInfo = doseInfo;
@@ -150,87 +165,95 @@ function abrirModalVacina(vacina, row, doseInfo) {
     sAplicador.value = vacina.aplicador;
     sLote.value = vacina.lote;
     sDataAplicacao.value = vacina.dataAplicacao;
-    sEstrategia.value = vacina.estrategia || 'rotina'; // Define um valor padrão se não houver estratégia
+    sEstrategia.value = vacina.estrategia || 'rotina';
     modalVacina.classList.add('active');
-    console.log(vacinas);
 }
 
-btnSalvarVacina.addEventListener('submit', (event) => {
-    event.preventDefault(); // Evita recarregar a página
+// Event listener para fechar modais
+document.querySelectorAll('.close-modal').forEach(button => {
+    button.addEventListener('click', () => {
+        modalVacina.classList.remove('active');
+        modalAdicionarOutra.classList.remove('active');
+    });
+});
+
+btnAdicionarOutraVacina.addEventListener('click', () => {
+    outraVacinaForm.reset();
+    modalAdicionarOutra.classList.add('active');
+});
+
+// --- SUBMISSÃO DOS FORMULÁRIOS ---
+
+vacinaForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
     if (!vacinaSelecionada || !criancaSelecionada) {
         alert("Selecione uma criança e uma vacina antes de salvar.");
         return;
     }
 
-    // Atualiza os dados da vacina
     vacinaSelecionada.aplicador = sAplicador.value.trim();
     vacinaSelecionada.lote = sLote.value.trim();
     vacinaSelecionada.dataAplicacao = sDataAplicacao.value.trim();
     vacinaSelecionada.estrategia = sEstrategia.value;
 
-
     const doseInfo = vacinaSelecionada.row.querySelector('.dose-info');
-    
-    
     if(!doseInfo) return;
-    let doseText = doseInfo.querySelector('.dose-text'); // Seleciona o elemento da dose
-    let dataAplicacaoText = doseInfo.querySelector('.data-text'); // Seleciona o elemento da data
 
-    if (!dataAplicacaoText) {
-        // Se não existir, cria um elemento de data
-        dataAplicacaoText = document.createElement('div');
-        dataAplicacaoText.className = 'data-text';
-        doseInfo.appendChild(dataAplicacaoText);
-    }
-
-    doseInfo.classList.remove('vacina-atrasada', 'vacina-aplicada', 'vacina-pendente');
+    let dataAplicacaoText = doseInfo.querySelector('.data-text');
 
     if (vacinaSelecionada.dataAplicacao) {
         vacinaSelecionada.status = 'tomada';
-        doseInfo.classList.add('vacina-aplicada');
         dataAplicacaoText.textContent = `Data: ${vacinaSelecionada.dataAplicacao}`;
     } else {
         vacinaSelecionada.status = 'naoTomadas';
         dataAplicacaoText.textContent = '';
     }
 
-    // Atualiza o banco de dados da criança
+    // Salvar no localStorage
     let criancas = carregarCriancas();
     let indexCrianca = criancas.findIndex(c => c.nome === criancaSelecionada.nome);
-
     if (indexCrianca !== -1) {
-        if (!criancas[indexCrianca].vacinas) {
-            criancas[indexCrianca].vacinas = {};
-        }
-        criancas[indexCrianca].vacinas = vacinas;
+        if (!criancas[indexCrianca].vacinas) criancas[indexCrianca].vacinas = {};
+        // Aqui você pode decidir como salvar as diferentes categorias de vacinas
+        criancas[indexCrianca].vacinas.rotina = vacinasRotina;
+        criancas[indexCrianca].vacinas.campanha = vacinasCampanha;
+        criancas[indexCrianca].vacinas.outros = outrasVacinas;
         localStorage.setItem('dbcriancas', JSON.stringify(criancas));
     }
 
     alert("Vacina salva com sucesso!");
-    modalVacina.classList.remove('active'); // Fecha o modal após salvar
+    modalVacina.classList.remove('active');
     atualizarCoresVacinas();
 });
 
+outraVacinaForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const novaVacina = {
+        nome: document.getElementById('outraVacinaNome').value,
+        dose: document.getElementById('outraVacinaDose').value,
+        aplicador: document.getElementById('outraAplicador').value,
+        lote: document.getElementById('outraLote').value,
+        dataAplicacao: document.getElementById('outraDataAplicacao').value,
+        status: 'tomada' // Assume-se que foi aplicada ao ser adicionada
+    };
+    outrasVacinas.push(novaVacina);
+    renderVacinas('outros');
+    modalAdicionarOutra.classList.remove('active');
+});
 
+
+// --- LÓGICA DA CRIANÇA E ATUALIZAÇÃO DE CORES (Seu código original adaptado) ---
 
 function carregarCriancas() {
     return JSON.parse(localStorage.getItem('dbcriancas')) ?? [];
 }
-document.addEventListener('click', function(event) {
-    if (modalPesquisarCrianca.classList.contains('active') && event.target === modalPesquisarCrianca) {
-        modalPesquisarCrianca.classList.remove('active');
-    }
-});
 
 document.querySelector('#crianca').addEventListener('submit', (event) => {
     event.preventDefault();
-
     const tipoPesquisa = document.querySelector('input[name="tipoPesquisa"]:checked').value;
     const valorPesquisa = document.querySelector('#campoPesquisa').value.trim();
-
     const resultado = pesquisarCrianca(tipoPesquisa, valorPesquisa);
-
     if (resultado.length > 0) {
         exibirResultadoCrianca(resultado[0]);
     } else {
@@ -249,105 +272,92 @@ function exibirResultadoCrianca(crianca) {
     criancaSelecionada = crianca;
     nomeCriancaElement.textContent = crianca.nome;
     let idade = mostrarIdadePorExtenso(crianca.dataNascimento);
-    document.getElementById('nomeCrianca').textContent = `${crianca.nome}`;
-    document.getElementById('dataNascimentoCrianca').textContent = `Data de Nascimento: ${crianca.dataNascimento}`;
-    document.getElementById('idadeCrianca').textContent = `Idade: ${idade.anos} anos, ${idade.meses} meses e ${idade.dias} dias`;
-    document.getElementById('cpfCrianca').textContent = `CPF: ${crianca.cpf}`;
-    document.getElementById('cnsCrianca').textContent = `CNS: ${crianca.cns}`;
+    idadeCriancaElement.textContent = `Idade: ${idade.anos} anos, ${idade.meses} meses e ${idade.dias} dias`;
+    cpfCriancaElement.textContent = `CPF: ${crianca.cpf}`;
+    cnsCriancaElement.textContent = `CNS: ${crianca.cns}`;
     modalPesquisarCrianca.classList.remove('active');
     localStorage.setItem('criancaSelecionada', JSON.stringify(crianca));
-    atualizarCoresVacinas(); // Atualiza as cores das vacinas com base na idade da criança
-}
-
-function carregarCriancas() {
-    return JSON.parse(localStorage.getItem('dbcriancas')) ?? [];
-}
-
-document.addEventListener('click', function(event) {
-    if (modalPesquisarCrianca.classList.contains('active') && event.target === modalPesquisarCrianca) {
-        modalPesquisarCrianca.classList.remove('active');
-    }
-});
-
-// Carregar a última criança selecionada ao iniciar
-window.onload = function() {
-    modalPesquisarCrianca.classList.add('active');
     
-};
-
-
+    // Carregar dados de vacinas da criança, se existirem
+    if (crianca.vacinas) {
+        Object.assign(vacinasRotina, crianca.vacinas.rotina || {});
+        Object.assign(vacinasCampanha, crianca.vacinas.campanha || {});
+        outrasVacinas = crianca.vacinas.outros || [];
+    }
+    
+    renderVacinas(filterSelect.value);
+}
 
 function mostrarIdadePorExtenso(dataNascimento) {
     let hoje = new Date();
     let nascimento = new Date(dataNascimento);
-
     let anos = hoje.getFullYear() - nascimento.getFullYear();
     let meses = hoje.getMonth() - nascimento.getMonth();
     let dias = hoje.getDate() - nascimento.getDate();
 
     if (dias < 0) {
         meses--;
-        let ultimoDiaMesAnterior = new Date(hoje.getFullYear(), hoje.getMonth(), 0).getDate();
-        dias += ultimoDiaMesAnterior;
+        dias += new Date(hoje.getFullYear(), hoje.getMonth(), 0).getDate();
     }
-
     if (meses < 0) {
         anos--;
         meses += 12;
     }
-
     return { anos, meses, dias };
 }
-function calcularIdade(dataNascimento) {
+
+function calcularIdadeEmMeses(dataNascimento) {
     const hoje = new Date();
     const nascimento = new Date(dataNascimento);
-    const diff = hoje - nascimento;
-    const idadeMeses = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)); // Aproximação para meses
-    return idadeMeses;
+    let meses = (hoje.getFullYear() - nascimento.getFullYear()) * 12;
+    meses -= nascimento.getMonth();
+    meses += hoje.getMonth();
+    return meses <= 0 ? 0 : meses;
 }
 
 function atualizarCoresVacinas() {
     if (!criancaSelecionada || !criancaSelecionada.dataNascimento) return;
 
-    const idadeCrianca = calcularIdade(criancaSelecionada.dataNascimento);
-    console.log(calcularIdade(criancaSelecionada.dataNascimento));
+    const idadeCriancaEmMeses = calcularIdadeEmMeses(criancaSelecionada.dataNascimento);
 
-    Object.keys(vacinas).forEach(idadeVacina => {
-        let idadeEmMeses = converterIdadeParaMeses(idadeVacina);
+    const todosGruposDeVacinas = [vacinasRotina, vacinasCampanha, { "outros": outrasVacinas }];
 
-        vacinas[idadeVacina].forEach(vacina => {
-            if (!vacina.row) return;
+    todosGruposDeVacinas.forEach(grupo => {
+        Object.keys(grupo).forEach(idadeVacina => {
+            let idadeRecomendadaMeses = converterIdadeParaMeses(idadeVacina);
+            
+            grupo[idadeVacina].forEach(vacina => {
+                if (!vacina.row) return;
 
-            const doseInfo = vacina.row.querySelector('.dose-info');
-            if (!doseInfo) return;
+                const doseInfo = vacina.row.querySelector('.dose-info');
+                if (!doseInfo) return;
 
-            // Remove classes anteriores apenas da dose-info
-            doseInfo.classList.remove('vacina-aplicada', 'vacina-atrasada', 'vacina-pendente');
+                doseInfo.classList.remove('vacina-aplicada', 'vacina-atrasada', 'vacina-pendente');
 
-            // Aplica a classe apenas na dose-info conforme o status
-            if (vacina.status === 'tomada') {
-                doseInfo.classList.add('vacina-aplicada'); // Apenas a dose fica verde
-
-            } else if (idadeCrianca >= idadeEmMeses) {
-                doseInfo.classList.add('vacina-atrasada'); // Apenas a dose fica vermelha
-
-            } else {
-                doseInfo.classList.add('vacina-pendente'); // Apenas a dose fica cinza
-            }
+                if (vacina.status === 'tomada') {
+                    doseInfo.classList.add('vacina-aplicada');
+                } else if (idadeCriancaEmMeses >= idadeRecomendadaMeses) {
+                    doseInfo.classList.add('vacina-atrasada');
+                } else {
+                    doseInfo.classList.add('vacina-pendente');
+                }
+            });
         });
     });
 }
-//Converte os rótulos de idade ('2 meses', '4 anos') para meses numéricos
+
 function converterIdadeParaMeses(idade) {
-    if (idade === "Ao nascer") {
-        return 0; // Reforça que "Ao nascer" equivale a 0 meses
-    }
-    if (idade.includes("ano")) {
-        return parseInt(idade) * 12; // Converte anos para meses
-    }
-    return parseInt(idade); // Mantém meses
+    if (idade.toLowerCase().includes("ao nascer")) return 0;
+    if (idade.toLowerCase().includes("ano")) return parseInt(idade) * 12;
+    if (idade.toLowerCase().includes("mese")) return parseInt(idade);
+    return 999; // Para grupos como "Campanha Nacional", não se aplica a lógica de idade
 }
+
+
+// --- INICIALIZAÇÃO ---
+filterSelect.addEventListener('change', () => renderVacinas(filterSelect.value));
 
 window.onload = function() {
     modalPesquisarCrianca.classList.add('active');
+    // A renderização inicial agora acontece após a seleção da criança
 };

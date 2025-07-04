@@ -1,44 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style_cartao_vacina.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Atualizar Cartão de Vacinas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Adicionando estilos para visibilidade do botão e modais */
+        :root {
+            --primary-color: #3451BA;
+            --second-color: #8193D4;
+            --third-color: #111B62;
+            --text-color: #F1F2FA;
+            --applied-color: #28a745;
+            --pending-color: #6c757d;
+            --late-color: #dc3545;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--second-color);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--text-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .header {
+            color: var(--third-color);
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .info-crianca {
+            text-align: center;
+            color: var(--third-color);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .filter-vacina {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #filterSelect {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #vacinas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .table {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            color: var(--third-color);
+        }
+
+        .table h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .vacina {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+        .vacina:last-child {
+            border-bottom: none;
+        }
+
+        .vacina h3 {
+            margin: 0;
+            font-size: 1.1em;
+            flex-grow: 1;
+        }
+
+        .dose {
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            min-width: 100px;
+            transition: background-color 0.3s;
+        }
+
+        .dose.aplicada {
+            background-color: var(--applied-color);
+            cursor: not-allowed;
+        }
+
+        .dose.pendente {
+            background-color: var(--pending-color);
+        }
+        
+        .dose.pendente:hover {
+            background-color: #5a6268;
+        }
+
+        .dose.atrasada {
+            background-color: var(--late-color);
+        }
+        
+        .dose.atrasada:hover {
+            background-color: #c82333;
+        }
+        
         #btnAdicionarOutraVacina {
-            display: none; /* Inicia oculto */
-            margin: 15px auto;
+            display: none;
+            margin: 20px auto 0;
             padding: 10px 20px;
-            background-color: #3451BA;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
         }
-        .vacina-item {
-            background-color: #f1f2fa;
-            padding: 15px;
-            margin-bottom: 10px;
+
+        /* Estilos do Modal */
+        .modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal {
+            background: white;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            cursor: pointer;
+            width: 90%;
+            max-width: 400px;
         }
-        .vacina-item:hover {
-            background-color: #e2e5f5;
-        }
-        .vacina-header {
-            font-weight: bold;
-            font-size: 1.1em;
-            color: #111B62;
-        }
-        .vacina-dose {
-            font-size: 0.9em;
-            color: #333;
-        }
+        .modal h2 { margin-top: 0; }
+        .modal form { display: flex; flex-direction: column; gap: 10px; }
+        .modal input, .modal select, .modal button { padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        .modal button[type="submit"] { background-color: var(--applied-color); color: white; }
+        .modal .close-modal { background-color: var(--pending-color); color: white; }
+
     </style>
 </head>
 <body>
@@ -47,269 +182,209 @@
         <div class="header">
             <span>Cartão de Vacinas</span>
         </div>
-        <div class="info-crianca" >
-            <h2 id="nomeCrianca">Nome do Paciente</h2>
-            <p id="idadeCrianca"></p>
-            <p id="dataNascimentoCrianca"></p>
-            <strong id="cpfCrianca"></strong>
-            <strong id="cnsCrianca"></strong>
+        <div class="info-crianca">
+            <h2 id="nomeCrianca">Criança Exemplo</h2>
+            <p id="dataNascimentoCrianca">Nascimento: 01/01/2024</p>
         </div>
 
         <div class="filter-vacina">
-            <h4>Vacina</h4>
+            <h4>Filtrar por:</h4>
             <select name="filter" id="filterSelect">
                 <option value="rotina">Rotina</option>
                 <option value="campanha">Campanha</option>
                 <option value="outros">Outros</option>
             </select>
         </div>
+        
         <div id="vacinas-container"></div>
-        <button id="btnAdicionarOutraVacina">Adicionar Vacina</button>
+        <button id="btnAdicionarOutraVacina">Adicionar Outra Vacina</button>
     </div>
 
     <div class="modal-container" id="modalAplicacao">
         <div class="modal">
-            <h2>Atualizar Vacina</h2>
+            <h2>Registrar Aplicação</h2>
             <form id="vacinaForm">
-                <label for="vacinaNome">Vacina Selecionada:</label>
-                <input type="text" id="vacinaNome" readonly>
-
+                <input type="hidden" id="vacinaId">
+                <label>Vacina: <strong id="vacinaNome"></strong></label>
                 <label for="aplicador">Aplicador:</label>
                 <input type="text" id="aplicador" required>
-
                 <label for="lote">Lote:</label>
                 <input type="text" id="lote" required>
-
                 <label for="dataAplicacao">Data de Aplicação:</label>
                 <input type="date" id="dataAplicacao" required>
-
-                 <div class="select-estrategia">
-                    <label for="estrategia">Estratégia</label>
-                    <select name="estrategia" id="estrategia">
-                        <option value="rotina">Rotina</option>
-                        <option value="campanha">Campanha</option>
-                    </select>
-                </div>
-
                 <button type="submit">Salvar Aplicação</button>
                 <button type="button" class="close-modal">Fechar</button>
             </form>
         </div>
     </div>
-
+    
     <div class="modal-container" id="modalAdicionarOutra">
         <div class="modal">
             <h2>Adicionar Nova Vacina</h2>
             <form id="outraVacinaForm">
                 <label for="outraVacinaNome">Nome da Vacina:</label>
                 <input type="text" id="outraVacinaNome" required>
-
                 <label for="outraVacinaDose">Dose:</label>
-                <input type="text" id="outraVacinaDose" required>
-
+                <input type="text" id="outraVacinaDose" placeholder="Ex: DOSE ÚNICA" required>
                 <label for="outraAplicador">Aplicador:</label>
                 <input type="text" id="outraAplicador" required>
-
                 <label for="outraLote">Lote:</label>
                 <input type="text" id="outraLote" required>
-
                 <label for="outraDataAplicacao">Data de Aplicação:</label>
                 <input type="date" id="outraDataAplicacao" required>
-
                 <button type="submit">Salvar Vacina</button>
-                 <button type="button" class="close-modal">Fechar</button>
+                <button type="button" class="close-modal">Fechar</button>
             </form>
         </div>
     </div>
 
-
-    <div class="modal-pesquisarCrianca">
-        <div class="pesquisarCrianca">
-            <h2>Pesquisar Criança</h2>
-            <form id="crianca">
-                <div id="tipoPesquisa">
-                    <label>
-                        <input type="radio" name="tipoPesquisa" value="nome" checked> Nome
-                    </label>
-                    <label>
-                        <input type="radio" name="tipoPesquisa" value="cpf"> CPF
-                    </label>
-                    <label>
-                        <input type="radio" name="tipoPesquisa" value="sus"> SUS
-                    </label>
-                </div>
-                <input type="text" id="campoPesquisa" placeholder="Digite o valor da pesquisa">
-                <button type="submit">Selecionar Criança</button>
-            </form>
-        </div>
-    </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    // --- ELEMENTOS DO DOM ---
     const filterSelect = document.getElementById('filterSelect');
     const vacinasContainer = document.getElementById('vacinas-container');
     const btnAdicionarOutraVacina = document.getElementById('btnAdicionarOutraVacina');
     const modalAplicacao = document.getElementById('modalAplicacao');
     const modalAdicionarOutra = document.getElementById('modalAdicionarOutra');
-    const vacinaNomeInput = document.getElementById('vacinaNome');
-
-    // --- BANCO DE DADOS DAS VACINAS ---
-
+    const vacinaForm = document.getElementById('vacinaForm');
+    const outraVacinaForm = document.getElementById('outraVacinaForm');
+    
+    // --- BANCO DE DADOS (SIMULADO) ---
+    // Status pode ser: 'aplicada', 'pendente', 'atrasada'
     const vacinasRotina = {
         "Ao nascer": [
-            { nome: "BCG", dose: "Dose única" },
-            { nome: "Hepatite B", dose: "Dose ao nascer" }
+            { id: "rt1", nome: "BCG", dose: "DOSE ÚNICA", status: "aplicada" },
+            { id: "rt2", nome: "Hepatite B", dose: "1ª DOSE", status: "aplicada" }
         ],
         "2 meses": [
-            { nome: "Penta", dose: "1ª dose" },
-            { nome: "VIP", dose: "1ª dose" },
-            { nome: "Pneumo 10", dose: "1ª dose" },
-            { nome: "Rotavírus", dose: "1ª dose" }
+            { id: "rt3", nome: "Penta", dose: "1ª DOSE", status: "pendente" },
+            { id: "rt4", nome: "VIP", dose: "1ª DOSE", status: "pendente" },
+            { id: "rt5", nome: "Pneumo 10", dose: "1ª DOSE", status: "atrasada" },
+            { id: "rt6", nome: "Rotavírus", dose: "1ª DOSE", status: "pendente" }
         ],
-        "3 meses": [
-            { nome: "Meningo C", dose: "1ª dose" }
-        ],
-        "4 meses": [
-            { nome: "Penta", dose: "2ª dose" },
-            { nome: "VIP", dose: "2ª dose" },
-            { nome: "Pneumo 10", dose: "2ª dose" },
-            { nome: "Rotavírus", dose: "2ª dose" }
-        ],
-        "5 meses": [
-            { nome: "Meningo C", dose: "2ª dose" }
-        ],
-        "6 meses": [
-            { nome: "Penta", dose: "3ª dose" },
-            { nome: "VIP", dose: "3ª dose" }
-        ],
-        "9 meses": [
-            { nome: "Febre Amarela", dose: "Uma dose" }
-        ],
-        "12 meses": [
-            { nome: "Tríplice Viral", dose: "1ª dose" },
-            { nome: "Pneumo 10", dose: "Reforço" },
-            { nome: "Meningo C", dose: "Reforço" }
-        ],
-        "15 meses": [
-            { nome: "DTP", dose: "1º reforço" },
-            { nome: "Tríplice Viral", dose: "Reforço" }
-        ],
-        "4 anos": [
-            { nome: "DTP", dose: "2º reforço" }
-        ],
-        "9 a 14 anos": [
-            { nome: "HPV", dose: "2 doses" }
-        ]
+        "3 meses": [ { id: "rt7", nome: "Meningo C", dose: "1ª DOSE", status: "pendente" } ],
+        "4 meses": [ { id: "rt8", nome: "Penta", dose: "2ª DOSE", status: "pendente" } ]
     };
 
     const vacinasCampanha = {
       "Campanha Nacional": [
-        { nome: "Influenza (Gripe)", dose: "ANUAL"},
-        { nome: "Covid-19 Campanha", dose: "DOSE EXTRA"},
-        { nome: "Poliomielite Campanha", dose: "GOTINHA"},
+        { id: "cp1", nome: "Influenza (Gripe)", dose: "ANUAL", status: "aplicada"},
+        { id: "cp2", nome: "Poliomielite", dose: "GOTINHA", status: "pendente"},
       ],
-      "Campanha Sazonal": [
-        { nome: "Febre Amarela Campanha", dose: "DOSE ÚNICA"},
-        { nome: "Meningite Campanha", dose: "DOSE EXTRA"},
-      ],
-      "Campanha Especial": [
-        { nome: "HPV Campanha", dose: "DOSE EXTRA" },
-        { nome: "Hepatite A Campanha", dose: "DOSE EXTRA"},
-      ],
+      "Campanha Especial": [ { id: "cp3", nome: "HPV Campanha", dose: "DOSE EXTRA", status: "pendente" } ],
     };
+    
+    let outrasVacinas = [];
 
     // --- FUNÇÕES DE RENDERIZAÇÃO ---
-
     function renderVacinas(filter) {
         vacinasContainer.innerHTML = '';
         btnAdicionarOutraVacina.style.display = 'none';
 
         if (filter === 'rotina') {
-            for (const ageGroup in vacinasRotina) {
-                const groupTitle = document.createElement('h3');
-                groupTitle.textContent = ageGroup;
-                vacinasContainer.appendChild(groupTitle);
-                vacinasRotina[ageGroup].forEach(vacina => {
-                    const item = createVacinaItem(vacina.nome, vacina.dose);
-                    item.addEventListener('click', () => openModalAplicacao(vacina.nome));
-                    vacinasContainer.appendChild(item);
-                });
-            }
+            renderGroups(vacinasRotina);
         } else if (filter === 'campanha') {
-            for (const campaignType in vacinasCampanha) {
-                const groupTitle = document.createElement('h3');
-                groupTitle.textContent = campaignType;
-                vacinasContainer.appendChild(groupTitle);
-                vacinasCampanha[campaignType].forEach(vacina => {
-                    const item = createVacinaItem(vacina.nome, vacina.dose);
-                    item.addEventListener('click', () => openModalAplicacao(vacina.nome));
-                    vacinasContainer.appendChild(item);
-                });
-            }
+            renderGroups(vacinasCampanha);
         } else if (filter === 'outros') {
+            renderGroups({ "Outras Vacinas Aplicadas": outrasVacinas });
             btnAdicionarOutraVacina.style.display = 'block';
         }
     }
 
-    function createVacinaItem(nome, dose) {
-        const div = document.createElement('div');
-        div.className = 'vacina-item';
-        div.innerHTML = `<div class="vacina-header">${nome}</div><div class="vacina-dose">${dose}</div>`;
-        return div;
+    function renderGroups(groups) {
+        for (const groupName in groups) {
+            const groupData = groups[groupName];
+            if (groupData.length === 0) continue;
+
+            const tableDiv = document.createElement('div');
+            tableDiv.className = 'table';
+            tableDiv.innerHTML = `<h2>${groupName}</h2>`;
+
+            groupData.forEach(vacina => {
+                tableDiv.appendChild(createVacinaElement(vacina));
+            });
+            vacinasContainer.appendChild(tableDiv);
+        }
     }
 
-    // --- MODAL LOGIC ---
-
-    function openModalAplicacao(nomeVacina) {
-        vacinaNomeInput.value = nomeVacina;
-        modalAplicacao.style.display = 'flex';
+    function createVacinaElement(vacina) {
+        const vacinaDiv = document.createElement('div');
+        vacinaDiv.className = 'vacina';
+        vacinaDiv.innerHTML = `
+            <h3>${vacina.nome}</h3>
+            <div id="${vacina.id}" class="dose ${vacina.status}">${vacina.dose}</div>
+        `;
+        
+        const doseButton = vacinaDiv.querySelector('.dose');
+        if (vacina.status !== 'aplicada') {
+            doseButton.addEventListener('click', () => {
+                openModalAplicacao(vacina.id, vacina.nome);
+            });
+        }
+        return vacinaDiv;
     }
-
+    
+    // --- LÓGICA DOS MODAIS ---
+    function openModal(modal) { modal.style.display = 'flex'; }
     function closeModal() {
         modalAplicacao.style.display = 'none';
         modalAdicionarOutra.style.display = 'none';
     }
-    
-    // Adiciona evento de fechar a todos os botões com a classe
-    document.querySelectorAll('.close-modal').forEach(button => {
-        button.addEventListener('click', closeModal);
-    });
 
+    function openModalAplicacao(id, nome) {
+        document.getElementById('vacinaId').value = id;
+        document.getElementById('vacinaNome').textContent = nome;
+        vacinaForm.reset();
+        openModal(modalAplicacao);
+    }
+
+    document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
     btnAdicionarOutraVacina.addEventListener('click', () => {
-        modalAdicionarOutra.style.display = 'flex';
+        outraVacinaForm.reset();
+        openModal(modalAdicionarOutra);
     });
 
-    // --- FORM SUBMISSIONS ---
-
-    document.getElementById('vacinaForm').addEventListener('submit', function(e) {
+    // --- SUBMISSÃO DOS FORMULÁRIOS ---
+    vacinaForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert(`Vacina ${vacinaNomeInput.value} aplicada com sucesso!`);
-        closeModal();
-        this.reset();
-    });
-
-    document.getElementById('outraVacinaForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const nome = document.getElementById('outraVacinaNome').value;
-        const dose = document.getElementById('outraVacinaDose').value;
-        const item = createVacinaItem(nome, dose);
-
-        // Adiciona ao container de 'outros'
-        vacinasContainer.appendChild(item);
+        const vacinaId = document.getElementById('vacinaId').value;
         
-        alert(`Vacina "${nome}" adicionada com sucesso!`);
+        const doseButton = document.getElementById(vacinaId);
+        if (doseButton) {
+            doseButton.className = 'dose aplicada';
+            doseButton.replaceWith(doseButton.cloneNode(true)); // Remove event listener
+        }
+        
+        // Atualizar status no "banco de dados"
+        for(const group in vacinasRotina) {
+            const vac = vacinasRotina[group].find(v => v.id === vacinaId);
+            if(vac) vac.status = 'aplicada';
+        }
+        for(const group in vacinasCampanha) {
+            const vac = vacinasCampanha[group].find(v => v.id === vacinaId);
+            if(vac) vac.status = 'aplicada';
+        }
+
         closeModal();
-        this.reset();
     });
 
-    // --- EVENT LISTENERS ---
-
-    filterSelect.addEventListener('change', (e) => {
-        renderVacinas(e.target.value);
+    outraVacinaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newVacina = {
+            id: 'ot' + (outrasVacinas.length + 1),
+            nome: document.getElementById('outraVacinaNome').value,
+            dose: document.getElementById('outraVacinaDose').value,
+            status: 'aplicada' // Adicionada como já aplicada
+        };
+        outrasVacinas.push(newVacina);
+        closeModal();
+        renderVacinas('outros'); // Re-renderiza a lista de "outros"
     });
 
-    // Renderiza a visualização inicial
-    renderVacinas(filterSelect.value);
+    // --- INICIALIZAÇÃO ---
+    filterSelect.addEventListener('change', (e) => renderVacinas(e.target.value));
+    renderVacinas(filterSelect.value); // Renderização inicial
 });
 </script>
 

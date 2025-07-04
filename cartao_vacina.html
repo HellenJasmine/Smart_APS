@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="./style/style_cartao_vacina.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Atualizar Cartão de Vacinas</title>
-    
 </head>
 <body>
 
@@ -20,25 +19,21 @@
             <p id="dataNascimentoCrianca"></p>
             <strong id="cpfCrianca"></strong>
             <strong id="cnsCrianca"></strong>
-
         </div>
 
-        
-        
         <div class="filter-vacina">
-            <h4>Vacina</h4>
+            <h4>Filtrar por:</h4>
             <select name="filter" id="filterSelect">
                 <option value="rotina">Rotina</option>
                 <option value="campanha">Campanha</option>
                 <option value="outros">Outros</option>
-
             </select>
         </div>
         <div id="vacinas-container"></div>
+        <button id="btnAdicionarOutraVacina">Adicionar Outra Vacina</button>
     </div>
     
-    <!-- Modal para Atualização da Vacina -->
-    <div class="modal-container">
+    <div class="modal-container" id="modalAplicacao">
         <div class="modal">
             <h2>Atualizar Vacina</h2>
             <form id="vacinaForm">
@@ -59,11 +54,30 @@
                     <select name="estrategia" id="estrategia">
                         <option value="campanha">Campanha</option>
                         <option value="rotina">Rotina</option>
-
                     </select>
                 </div>
     
                 <button type="submit">Salvar Aplicação</button>
+                <button type="button" class="close-modal">Fechar</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal-container" id="modalAdicionarOutra">
+        <div class="modal">
+            <h2>Adicionar Nova Vacina</h2>
+            <form id="outraVacinaForm">
+                <label for="outraVacinaNome">Nome da Vacina:</label>
+                <input type="text" id="outraVacinaNome" required>
+                <label for="outraVacinaDose">Dose:</label>
+                <input type="text" id="outraVacinaDose" placeholder="Ex: DOSE ÚNICA" required>
+                <label for="outraAplicador">Aplicador:</label>
+                <input type="text" id="outraAplicador" required>
+                <label for="outraLote">Lote:</label>
+                <input type="text" id="outraLote" required>
+                <label for="outraDataAplicacao">Data de Aplicação:</label>
+                <input type="date" id="outraDataAplicacao" required>
+                <button type="submit">Salvar Vacina</button>
+                <button type="button" class="close-modal">Fechar</button>
             </form>
         </div>
     </div>
@@ -97,16 +111,11 @@
                 
                 <input type="text" id="campoPesquisa" placeholder="Digite o valor da pesquisa">
                 
-    
                 <button type="submit">Selecionar Criança</button>
             </form>
         </div>
     </div>
-    <script src="./js/api.js">
-    
-  
-    </script>
+    <script src="./js/api.js"></script>
 
     </body>
 </html>
-
