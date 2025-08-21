@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style_adicionar_familia.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<!-- Tema opcional mais bonito -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+
     <title>Document</title>
 </head>
 <body>
@@ -20,7 +25,9 @@
                     <input id="m-nome" type="text" />
             
                     <label for="m-dataNascimento">Data de Nascimento</label>
-                    <input id="m-dataNascimento" type="date"/>
+                    <input id="m-dataNascimento" type="text" placeholder="dd/mm/aaaa"  />
+
+
             
                     <label for="m-cpf">CPF</label>
                     <input id="m-cpf" type="text" />
@@ -56,5 +63,22 @@
 
 
     <script src="./js/script.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
+    <script>
+        flatpickr("#m-dataNascimento", {
+            dateFormat: "d/m/Y", // formato brasileiro
+            locale: "pt",        // tradução para português
+            allowInput: true     // permite digitar manualmente
+        });
+        Inputmask({
+    mask: "99/99/9999",
+    placeholder: "dd/mm/aaaa",
+    insertMode: false,
+    showMaskOnHover: false
+}).mask("#m-dataNascimento");
+    </script>
 </body>
 </html>
