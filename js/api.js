@@ -63,10 +63,14 @@ const vacinasRotina = {
         { nome: 'DTP', dose: '1º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
         { nome: 'VIP', dose: 'REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
         { nome: 'Hepatite A', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
-        { nome: 'Tetraviral', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
+        { nome: 'Tetraviral', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
+        { nome: 'Varicela', dose: '1º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
+
     ],
     "4 anos": [
-        { nome: 'DTP', dose: '2º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
+        { nome: 'DTP', dose: '2º REFORÇO', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' },
+        { nome: 'Varicela', dose: '2º DOSE', aplicador: '', lote: '', dataAplicacao: '', status: 'naoTomadas' }
+
     ]
 };
 

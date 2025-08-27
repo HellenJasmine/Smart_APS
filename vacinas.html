@@ -1,93 +1,145 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style_vacinas.css">
-    <title>Calendário de Vacinação Infantil</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calendário Vacinal</title>
+<style>
+:root {
+  --primary-color: #3451BA;
+  --second-color: #8193D4;
+  --third-color: #111B62;
+  --forty-color: #130f90;
+  --text-color: #F1F2FA;
+}
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--primary-color);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  height: 80%;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--third-color);
+}
+
+.card {
+  background: var(--second-color);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 15px;
+  color: var(--text-color);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.vacina {
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: var(--forty-color);
+  font-weight: 500;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Calendário de Vacinação Infantil</h1>
-        
-        <div class="vacina">
-            <h1>BCG</h1>
-            <span>Previne formas graves da tuberculose (miliar e meníngea).</span>
-            <h2>Dose única ao nascer</h2>
-            <h3>Doenças Evitadas: Tuberculose</h3>
-        </div>
+<div class="container">
+  <h1>Calendário Vacinal</h1>
 
-        <div class="vacina">
-            <h1>Hepatite B</h1>
-            <span>Previne contra hepatite B, uma infecção viral que ataca o fígado.</span>
-            <h2>Dose ao nascer</h2>
-            <h3>Doenças Evitadas: Hepatite B</h3>
-        </div>
+  <div class="card">
+    <h2>Ao nascer</h2>
+    <div class="vacina">BCG</div>
+    <div class="vacina">Hepatite B</div>
+  </div>
 
-        <div class="vacina">
-            <h1>Penta</h1>
-            <span>Protege contra difteria, tétano, coqueluche, hepatite B e infecções por Haemophilus influenzae B.</span>
-            <h2>1ª, 2ª e 3ª doses aos 2, 4 e 6 meses</h2>
-            <h3>Doenças Evitadas: Difteria, tétano, coqueluche, hepatite B e Haemophilus influenzae B</h3>
-        </div>
+  <div class="card">
+    <h2>2 meses</h2>
+    <div class="vacina">Pentavalente</div>
+    <div class="vacina">VIP</div>
+    <div class="vacina">Pneumocócica 10V</div>
+    <div class="vacina">Rotavírus</div>
+  </div>
 
-        <div class="vacina">
-            <h1>VIP</h1>
-            <span>Vacina inativada contra poliomielite.</span>
-            <h2>1ª, 2ª e 3ª doses aos 2, 4 e 6 meses</h2>
-            <h3>Doenças Evitadas: Poliomielite</h3>
-        </div>
-        
-        <div class="vacina">
-            <h1>Pneumo 10</h1>
-            <span>Previne infecções invasivas como meningite, pneumonia e otite média aguda.</span>
-            <h2>1ª, 2ª doses e reforço aos 2, 4 e 12 meses</h2>
-            <h3>Doenças Evitadas: Meningite, pneumonia, otite média aguda</h3>
-        </div>
+  <div class="card">
+    <h2>3 meses</h2>
+    <div class="vacina">Meningo C</div>
+  </div>
 
-        <div class="vacina">
-            <h1>Rotavírus</h1>
-            <span>Previne diarreia grave causada pelo rotavírus.</span>
-            <h2>1ª e 2ª doses aos 2 e 4 meses</h2>
-            <h3>Doenças Evitadas: Gastroenterite por rotavírus</h3>
-        </div>
-        
-        <div class="vacina">
-            <h1>Meningo C</h1>
-            <span>Previne doenças invasivas causadas pela Neisseria meningitidis do sorogrupo C.</span>
-            <h2>1ª, 2ª doses e reforço aos 3, 5 e 12 meses</h2>
-            <h3>Doenças Evitadas: Meningite meningocócica</h3>
-        </div>
+  <div class="card">
+    <h2>4 meses</h2>
+    <div class="vacina">Pentavalente</div>
+    <div class="vacina">VIP</div>
+    <div class="vacina">Pneumocócica 10V</div>
+    <div class="vacina">Rotavírus</div>
+  </div>
 
-        <div class="vacina">
-            <h1>Febre Amarela</h1>
-            <span>Previne febre amarela, uma doença viral transmitida por mosquitos.</span>
-            <h2>Uma dose aos 9 meses</h2>
-            <h3>Doenças Evitadas: Febre amarela</h3>
-        </div>
-        
-        <div class="vacina">
-            <h1>Tríplice Viral</h1>
-            <span>Previne sarampo, caxumba e rubéola.</span>
-            <h2>1ª dose aos 12 meses, reforço aos 15 meses</h2>
-            <h3>Doenças Evitadas: Sarampo, caxumba e rubéola</h3>
-        </div>
+  <div class="card">
+    <h2>5 meses</h2>
+    <div class="vacina">Meningo C</div>
+  </div>
 
-        <div class="vacina">
-            <h1>DTP</h1>
-            <span>Reforço contra difteria, tétano e coqueluche.</span>
-            <h2>1º reforço aos 15 meses, 2º reforço aos 4 anos</h2>
-            <h3>Doenças Evitadas: Difteria, tétano e coqueluche</h3>
-        </div>
+  <div class="card">
+    <h2>6 meses</h2>
+    <div class="vacina">Pentavalente</div>
+    <div class="vacina">VIP</div>
+  </div>
 
-        <div class="vacina">
-            <h1>HPV</h1>
-            <span>Previne infecções pelo papilomavírus humano (HPV), reduzindo o risco de câncer de colo do útero.</span>
-            <h2>2 doses entre 9 e 14 anos</h2>
-            <h3>Doenças Evitadas: Infecção pelo HPV e câncer do colo do útero</h3>
-        </div>
-    </div>
+  <div class="card">
+    <h2>9 meses</h2>
+    <div class="vacina">Febre Amarela</div>
+  </div>
+
+  <div class="card">
+    <h2>12 meses</h2>
+    <div class="vacina">Pneumocócica 10V</div>
+    <div class="vacina">Meningo C</div>
+    <div class="vacina">Tríplice viral</div>
+  </div>
+
+  <div class="card">
+    <h2>15 meses</h2>
+    <div class="vacina">DTP</div>
+    <div class="vacina">VIP</div>
+    <div class="vacina">Hepatite A</div>
+    <div class="vacina">Tetraviral</div>
+    <div class="vacina">Varicela</div>
+  </div>
+
+  <div class="card">
+    <h2>4 anos</h2>
+    <div class="vacina">DTP</div>
+    <div class="vacina">Varicela</div>
+  </div>
+</div>
 </body>
 </html>
+
 
